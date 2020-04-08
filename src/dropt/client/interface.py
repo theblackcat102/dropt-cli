@@ -2,7 +2,7 @@ import json
 from .__init__ import __version__
 from .endpoint import ApiEndpoint
 from .objects import ApiObject, Project, Suggestion, Validation, Token
-from .requestor import Requestor
+from .requestor import Requestor, DEFAULT_HTTP_TIMEOUT
 from .resource import ApiResource
 
 
@@ -120,7 +120,7 @@ class ConnectionImpl:
 
 
 class Connection:
-    def __init__(self, client_token=None, server_ip=None):
+    def __init__(self, client_token=None, server_ip=None, timeout=DEFAULT_HTTP_TIMEOUT):
         client_token = client_token
         api_url = f"https://{server_ip}"
         if not client_token:
@@ -134,6 +134,7 @@ class Connection:
             client_token,
             "",
             default_headers,
+            timeout=timeout,
         )
         self.impl = ConnectionImpl(requestor, api_url=api_url)
 

@@ -74,6 +74,9 @@ def start():
                         help='server address (default: dropt.neuralscope.org/)')
     parser.add_argument('-c', '--config', default='config.json',
                         help='config file (default: ./config.json)')
+    parser.add_argument('--timeout', default=150, type=int,
+                        help='Server connection timeout')
+
     args, _ = parser.parse_known_args()
 
     # read config file

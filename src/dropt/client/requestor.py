@@ -7,6 +7,9 @@ DEFAULT_HTTP_TIMEOUT = 150
 # ignore invalid SSL certificate
 requests.packages.urllib3.disable_warnings()
 
+# Retries 5 times before exception
+requests.adapters.DEFAULT_RETRIES = 5
+
 
 class Requestor:
     def __init__(self, user, password, headers, verify_ssl_certs=False, proxies=None, timeout=DEFAULT_HTTP_TIMEOUT):
